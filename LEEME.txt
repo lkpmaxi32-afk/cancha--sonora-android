@@ -1,0 +1,42 @@
+CANCHA SONORA 2.0 - proyecto Android Studio (Capacitor)
+=======================================================
+
+AVISO HONESTO: no pude compilar el APK en mi entorno (no tiene el SDK de Android).
+La app web la probé en un navegador simulando 30.000 canciones (fluida, sin tirones).
+La parte nativa (lectura de la tarjeta, notificación de música nueva, borrar, compartir)
+está escrita pero SIN compilar ni probar en un teléfono. Si Android Studio muestra un
+error, copiá el mensaje y se corrige.
+
+QUÉ HAY DE NUEVO
+- Eliminar canción (3 puntitos > Eliminar) con confirmación. Android pide su propio permiso.
+- Vuelve donde quedó: misma canción y mismo segundo (queda en pausa).
+- Lee la música directo del teléfono y de la tarjeta. Botón "Actualizar" para ver la nueva.
+- Notificación "Música nueva" cuando se agrega música (con la app cerrada).
+- 3 puntitos: Reproducir a continuación, Ir al artista, Buscar el álbum, Agregar a playlist,
+  Compartir (WhatsApp), Eliminar.
+- Más básquet: cancha de fondo, play = pelota, marcador, aro animado.
+- Maza: dribla rápido al sonar, quieto en pausa.
+- Más rápido: la música se reproduce en streaming (no se carga entera en memoria) y las
+  listas dibujan solo lo que se ve, así que 30.000 canciones andan igual que 30.
+  Cambio: se quitó el espectro de barras (consumía batería); el marcador lo reemplaza.
+
+DE ZIP A APK (con Android Studio)
+---------------------------------
+Necesitás: Node.js LTS (nodejs.org) y Android Studio (developer.android.com/studio).
+Internet solo esta primera vez.
+
+1. Descomprimí el ZIP en una carpeta (por ejemplo C:\cancha-sonora-android).
+2. Abrí una terminal en esa carpeta y ejecutá:   npm install
+   (descarga @capacitor/android; NO ejecutes "npx cap sync").
+3. Abrí Android Studio > Open > elegí la carpeta "android" (la de adentro). Esperá a que
+   termine el Gradle Sync (acepta instalar el SDK 34 si lo pide).
+4. Menú Build > Build Bundle(s) / APK(s) > Build APK(s).
+5. Al terminar, "locate": app/build/outputs/apk/debug/app-debug.apk
+6. Pasá el APK al celular, abrilo (permití "instalar de orígenes desconocidos").
+   Si ya tenías la versión anterior, se actualiza encima.
+7. La primera vez la app pide permiso para leer tu música y para notificaciones: aceptá.
+
+SI NO QUERÉS INSTALAR NADA: subí la carpeta a GitHub; el archivo .github/workflows/apk.yml
+compila el APK en la pestaña Actions.
+
+Para cambiar la app web: edita www/index.html y copialo a android/app/src/main/assets/public/index.html
